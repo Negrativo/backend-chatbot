@@ -7,8 +7,13 @@
 -Para iniciar após configurar o ambiente, execute "npm run dev" e inicia o servidor em modo de desevolvimento, no qual atualiza o server a cada alteração salva.
 
 **Scripts:**
-    "start": Iniciar servidor
-    "dev": Iniciar servidor em modo desenvolvimento
-    "mount_db": Configurar tabelas do banco de dados
-    "unmount_db": Desfazer ultima configuração/tabela aplicada do banco de dados
-    "unmount_all_db":  Desfazer todas configuração/tabela aplicada do banco de dados
+
+"start": Iniciar servidor
+
+"dev": Iniciar servidor em modo desenvolvimento
+    
+"mount_db": Configurar tabelas do banco de dados
+    
+"unmount_db": Desfazer ultima configuração/tabela aplicada do banco de dados
+    
+"unmount_all_db":  Desfazer todas configuração/tabela aplicada do banco de dados
