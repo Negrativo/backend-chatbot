@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const { validationResult } = require('express-validator');
-const UserController = require('./controllers/UserController');
-const { createUserValidation, updateUserValidation, UserIdValidation } = require('./middlewares/userValidations');
+import { createUserValidation, updateUserValidation, UserIdValidation } from './middlewares/userValidations.js';
+import { validationResult } from 'express-validator';
+import UserController from './controllers/UserController.js';
+import { Router } from "express";
+const router = Router();
 
 router.post('/usuario/cadastro', createUserValidation, (req, res, next) => {
     const errors = validationResult(req);
@@ -31,4 +31,4 @@ router.post('/usuario/deletar/:id', UserIdValidation, (req, res, next) => {
 router.post('/usuario/dadosSelecionado/:id', UserController.findById);
 router.get('/usuario/dados', UserController.show);
 
-module.exports = router;
+export default router;

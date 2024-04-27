@@ -1,4 +1,4 @@
-const User = require('../model/Usuario'); // Importe o modelo User
+import User  from '../model/Usuario.js'; // Importe o modelo User
 
 class UserController {
     async store(req, res) {
@@ -90,4 +90,4 @@ class UserController {
       
 }
 
-module.exports = new UserController();
+export default new UserController();

@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../database'); // Caminho para sua instância do Sequelize
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../database.js'; // Caminho para sua instância do Sequelize
 
 class User extends Model {}
 
@@ -29,7 +29,8 @@ User.init({
 }, {
   sequelize,
   modelName: 'User',
+  tableName: 'Users',
   // Sequelize adiciona por padrão os campos createdAt e updatedAt
 });
 
-module.exports = User;
+export default User;

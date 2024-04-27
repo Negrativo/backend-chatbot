@@ -17,3 +17,6 @@
 "unmount_db": Desfazer ultima configuração/tabela aplicada do banco de dados
     
 "unmount_all_db":  Desfazer todas configuração/tabela aplicada do banco de dados
+
+**Adicionais**
+- Para criar uma nova migration use 'npx sequelize-cli migration:generate --name NOME'
