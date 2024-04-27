@@ -15,22 +15,22 @@ class EventoController {
             res.status(500).json({ error: "Houve um problema interno, tente novamente mais tarde." });
         }
     }
-    
+
     async update(req, res) {
         const { codEvento } = req.params;
-        const { data } = req.body;
-        console.log(`Attempting to update evento: ${id}`);
+        const { cpfUser, data } = req.body;
+        console.log(`Attempting to update evento with codEvento: ${codEvento}`);
         try {
             const [updatedRows, [updatedEvento]] = await Evento.update(
-                { cpfUser, data, codEvento },
-                { where: { id }, returning: true }
+                { cpfUser, data },
+                { where: { codEvento }, returning: true }  // Utiliza codEvento para localizar o evento
             );
-            
-            if (!updatedRows) {
-                console.log(`Evento not found: ${id}`);
+    
+            if (updatedRows === 0) {
+                console.log(`Evento not found with codEvento: ${codEvento}`);
                 return res.status(404).json({ message: "Evento não encontrado." });
             }
-            console.log(`Evento updated: ${id}`);
+            console.log(`Evento updated with codEvento: ${codEvento}`);
             res.json({ message: "Evento atualizado com sucesso.", evento: updatedEvento });
         } catch (error) {
             console.error("Update error:", error);
