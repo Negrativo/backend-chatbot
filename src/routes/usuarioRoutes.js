@@ -1,6 +1,6 @@
-import { createUserValidation, updateUserValidation, UserIdValidation } from './middlewares/userValidations.js';
+import { createUserValidation, updateUserValidation, UserIdValidation } from '../middlewares/userValidations.js';
 import { validationResult } from 'express-validator';
-import UserController from './controllers/UserController.js';
+import UserController from '../controllers/UserController.js';
 import { Router } from "express";
 const router = Router();
 

@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import pkg from 'pg';
-import usuarioRoutes from './src/usuarioRoutes.js'; 
-import eventsRoutes from './src/eventsRoutes.js'; 
+import usuarioRoutes from './src/routes/usuarioRoutes.js'; 
+import eventsRoutes from './src/routes/eventsRoutes.js'; 
 
 const { Client } = pkg;
 dotenv.config();

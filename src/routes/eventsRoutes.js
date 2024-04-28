@@ -1,6 +1,6 @@
 // src/eventRoutes.js
 import { Router } from 'express';
-import EventController from './controllers/EventController.js';
+import EventController from '../controllers/EventController.js';
 
 const EventsRouter = Router();
 
