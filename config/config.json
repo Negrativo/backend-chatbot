@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "vanderson",
+    "password": "Love13Skate06Boarding2002desdemeno",
+    "database": "chatbot",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "chatbot",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "chatbot",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  }
+}
