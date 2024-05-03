@@ -3,7 +3,6 @@ import sequelize from '../database.js'; // Caminho para sua instância do Sequel
 
 class User extends Model {}
 
-// Inicialize o modelo User com a definição dos campos e configurações do modelo
 User.init({
   name: {
     type: DataTypes.STRING,
@@ -25,12 +24,15 @@ User.init({
   phone_number: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  birth_date: {
+    type: DataTypes.STRING, // Assume que a data de nascimento é apenas a data, sem hora
+    allowNull: false
   }
 }, {
   sequelize,
   modelName: 'User',
   tableName: 'Users',
-  // Sequelize adiciona por padrão os campos createdAt e updatedAt
 });
 
 export default User;

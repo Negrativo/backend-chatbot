@@ -28,7 +28,6 @@ router.post('/usuario/deletar/:id', UserIdValidation, (req, res, next) => {
     UserController.destroy(req, res);
 });
 
-router.post('/usuario/dadosSelecionado/:id', UserController.findById);
 router.get('/usuario/dados', UserController.show);
-
+router.get('/usuario/consulta/:cpf', UserController.findByCpf);
 export default router;
