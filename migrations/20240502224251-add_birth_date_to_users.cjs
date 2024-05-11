@@ -13,3 +13,4 @@ module.exports = {
     await queryInterface.removeColumn('Users', 'birth_date');
   }
 };
+//adding teste
