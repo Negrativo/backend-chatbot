@@ -1,4 +1,4 @@
-import User  from '../model/Usuario.js'; // Importe o modelo User
+import User  from '../model/User.js'; // Importe o modelo User
 
 class UserController {
     async store(req, res) {

@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "vanderson",
-    "password": "Love13Skate06Boarding2002desdemeno",
+    "username": "postgres",
+    "password": "postgres",
     "database": "chatbot",
     "host": "localhost",
     "dialect": "postgres",

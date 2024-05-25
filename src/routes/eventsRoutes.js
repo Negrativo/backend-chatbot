@@ -1,4 +1,3 @@
-// src/eventRoutes.js
 import { Router } from 'express';
 import EventController from '../controllers/EventController.js';
 
@@ -10,6 +9,5 @@ EventsRouter.get('/evento/:codEvento', EventController.findByCodEvento);
 EventsRouter.put('/evento/atualizar/:codEvento', EventController.update);
 EventsRouter.delete('/evento/deletar/:codEvento', EventController.delete);
 EventsRouter.get('/eventos/:cpfUser', EventController.listAll);
-
 
 export default EventsRouter;

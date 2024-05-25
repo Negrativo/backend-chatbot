@@ -15,9 +15,11 @@
   "author": "Joao Lucas Souza",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
     "node-pg-migrate": "^7.0.0",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",

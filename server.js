@@ -1,8 +1,10 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import pkg from 'pg';
-import usuarioRoutes from './src/routes/usuarioRoutes.js'; 
-import eventsRoutes from './src/routes/eventsRoutes.js'; 
+import UsuarioRoutes from './src/routes/usuarioRoutes.js'; 
+import EventsRoutes from './src/routes/eventsRoutes.js';
+import ChatbotRouter from './src/routes/chatbotRoutes.js';
+import LoginRouter from './src/routes/loginRoutes.js';
 
 const { Client } = pkg;
 dotenv.config();
@@ -29,8 +31,10 @@ async function connectToDatabase() {
 const app = express();
 app.use(json());
 
-app.use(usuarioRoutes);
-app.use(eventsRoutes);
+app.use(UsuarioRoutes);
+app.use(EventsRoutes);
+app.use(ChatbotRouter);
+app.use(LoginRouter);
 
 connectToDatabase();
 

@@ -1,10 +1,10 @@
-import Evento from '../model/Evento.js'; // Importe o modelo Evento
+import Event from '../model/Event.js'; // Importe o modelo Evento
 
 class EventoController {
     async create(req, res) {
         const { cpfUser, data, codEvento } = req.body;
         try {
-            const newEvento = await Evento.create({ cpfUser, data, codEvento });
+            const newEvento = await Event.create({ cpfUser, data, codEvento });
             console.log(`Evento created: ${newEvento.id}`);
             res.status(201).json({ message: 'Evento cadastrado com sucesso.', evento: newEvento });
         } catch (error) {
@@ -21,7 +21,7 @@ class EventoController {
         const { cpfUser, data } = req.body;
         console.log(`Attempting to update evento with codEvento: ${codEvento}`);
         try {
-            const [updatedRows, [updatedEvento]] = await Evento.update(
+            const [updatedRows, [updatedEvento]] = await Event.update(
                 { cpfUser, data },
                 { where: { codEvento }, returning: true }  // Utiliza codEvento para localizar o evento
             );
@@ -46,7 +46,7 @@ class EventoController {
         const { codEvento } = req.params;
         console.log(`Attempting to delete evento: ${codEvento}`);
         try {
-            const deletedRows = await Evento.destroy({
+            const deletedRows = await Event.destroy({
                 where: { codEvento }
             });
             if (!deletedRows) {
@@ -64,7 +64,7 @@ class EventoController {
     async findByCodEvento(req, res) {
         const { codEvento } = req.params;
         try {
-            const evento = await Evento.findOne({
+            const evento = await Event.findOne({
                 where: {
                     codEvento: codEvento  // Filtra os eventos pelo codEvento fornecido
                 }
@@ -83,7 +83,7 @@ class EventoController {
     async listAll(req, res) {
         const { cpfUser } = req.params;  // Assegure-se de que o cpfUser é passado como um parâmetro na rota
         try {
-            const eventos = await Evento.findAll({
+            const eventos = await Event.findAll({
                 where: {
                     cpfUser: cpfUser  // Filtra os eventos onde o cpfUser é igual ao CPF fornecido
                 }
