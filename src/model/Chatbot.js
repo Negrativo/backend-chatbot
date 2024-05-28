@@ -18,15 +18,20 @@ Chatbot.init({
     type: DataTypes.STRING,
     allowNull: false
   },
+  sessionId: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   timestamp: {
     type: DataTypes.TIME,
     allowNull: false,
     unique: true
-  }
+  },
+
 }, {
   sequelize,
   modelName: 'Chatbot',
-  tableName: 'Chatbots',
+  tableName: 'Chatbot',
 });
 
 export default Chatbot;

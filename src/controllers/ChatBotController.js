@@ -4,9 +4,9 @@ import Chatbot from '../model/Chatbot.js'; // Importe o modelo Chatbot
 class ChatbotController {
 
     async create(req, res) {
-        const { name, adminId, timestamp } = req.body;
+        const { name, adminId, timestamp, sessionId } = req.body;
         try {
-            const newChatbot = await Chatbot.create({ name, adminId, timestamp });
+            const newChatbot = await Chatbot.create({ name, adminId, timestamp, sessionId });
             console.log(`Chatbot created: ${newChatbot.id}`);
             res.status(201).json({ message: 'Chatbot cadastrado com sucesso.', chatbot: newChatbot });
         } catch (error) {

@@ -20,3 +20,4 @@
 
 **Adicionais**
 - Para criar uma nova migration use 'npx sequelize-cli migration:generate --name NOME'
+- Arquivos Migration são gerados inicialmente no formato ".js", altere para ".cjs" antes de executar o mount_db
