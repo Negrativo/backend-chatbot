@@ -5,6 +5,7 @@ import UsuarioRoutes from './src/routes/usuarioRoutes.js';
 import EventsRoutes from './src/routes/eventsRoutes.js';
 import ChatbotRouter from './src/routes/chatbotRoutes.js';
 import LoginRouter from './src/routes/loginRoutes.js';
+import cors from 'cors';
 
 const { Client } = pkg;
 dotenv.config();
@@ -30,6 +31,7 @@ async function connectToDatabase() {
 
 const app = express();
 app.use(json());
+app.use(cors())
 
 app.use(UsuarioRoutes);
 app.use(EventsRoutes);
@@ -38,7 +40,7 @@ app.use(LoginRouter);
 
 connectToDatabase();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3010;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

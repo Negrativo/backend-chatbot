@@ -10,7 +10,7 @@ class LoginController {
   static async login(req, res) {
     try {
       const { login, password } = req.body;
-      
+      console.log(login,password)
       // Buscar admin pelo login
       const admin = await Admin.findOne({ where: { login } });
       
@@ -28,10 +28,18 @@ class LoginController {
 
       const token = jwt.sign({ adminId: admin.id }, jwtSecret, { expiresIn: '1h' });
 
+      const adminData = {
+        name: admin.name,
+        contact: admin.contact,
+        cnpj: admin.cnpj,
+        email: admin.email,
+      }
+
       // Login bem-sucedido
       res.status(200).json({
         message: 'Login successful',
-        token: token 
+        token: token,
+        adminData
       });
     } catch (error) {
       console.error(error);
