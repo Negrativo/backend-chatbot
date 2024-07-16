@@ -2,6 +2,7 @@ import Admin from "../model/Admin.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
@@ -78,6 +79,77 @@ class LoginController {
 				message: `Admin ${novoAdmin.name} created successfully`,
 				adminId: novoAdmin.id,
 			});
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ message: "Server error" });
+		}
+	}
+
+	static async requestPasswordReset(req, res) {
+		try {
+			const { email } = req.body;
+
+			// Verificar se o administrador existe
+			const admin = await Admin.findOne({ where: { email } });
+			if (!admin) {
+				return res.status(404).json({ message: "Admin not found" });
+			}
+
+			// Gerar token de redefinição de senha
+			const resetToken = jwt.sign({ adminId: admin.id }, jwtSecret, { expiresIn: "1h" });
+
+			// Configurar o transporte de e-mail
+			const transporter = nodemailer.createTransport({
+				service: "gmail",
+				auth: {
+					user: process.env.EMAIL_USER,
+					pass: process.env.EMAIL_PASS,
+				},
+			});
+
+			// Enviar e-mail com o token de redefinição de senha
+			const mailOptions = {
+				from: process.env.EMAIL_USER,
+				to: admin.email,
+				subject: "Recuperação de senha",
+				text: `Você solicitou uma redefinição de senha para acesso ao portal de administração Chatbot. Use o seguinte token para redefinir sua senha: ${resetToken}`,
+			};
+
+			await transporter.sendMail(mailOptions);
+
+			res.status(200).json({ message: "Password reset email sent" });
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ message: "Server error" });
+		}
+	}
+	static async resetPassword(req, res) {
+		try {
+			const { token, newPassword } = req.body;
+
+			// Verificar o token
+			let decoded;
+			try {
+				decoded = jwt.verify(token, jwtSecret);
+			} catch (error) {
+				return res.status(400).json({ message: "Invalid or expired token" });
+			}
+
+			// Buscar admin pelo ID do token decodificado
+			const admin = await Admin.findByPk(decoded.adminId);
+			if (!admin) {
+				return res.status(404).json({ message: "Admin not found" });
+			}
+
+			// Gerar hash da nova senha
+			const saltRounds = 10;
+			const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+			// Atualizar a senha do administrador
+			admin.password = hashedPassword;
+			await admin.save();
+
+			res.status(200).json({ message: "Password reset successful" });
 		} catch (error) {
 			console.error(error);
 			res.status(500).json({ message: "Server error" });
