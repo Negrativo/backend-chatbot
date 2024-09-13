@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../database.js"; // Caminho para sua instância do Sequelize
+import sequelize from "../database.js";
 
 class Event extends Model {}
 
@@ -7,42 +7,39 @@ Event.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		cpfUser: {
-			type: DataTypes.STRING,
+		sender_id: {
+			type: DataTypes.STRING, // Ajuste para o tipo apropriado conforme seu banco de dados
 			allowNull: false,
-			references: {
-				model: "Users", // Nome da tabela de usuários
-				key: "cpf", // Chave na tabela de usuários que cpfUser está referenciando
-			},
-			onUpdate: "CASCADE",
-			onDelete: "CASCADE",
 		},
-		nomeUser: {
+		type_name: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		dataInicial: {
-			type: DataTypes.TIME,
+		timestamp: {
+			type: DataTypes.DATE, // Verifique se está no formato de data correto no banco
 			allowNull: false,
 		},
-		dataFinal: {
-			type: DataTypes.TIME,
-			allowNull: false,
-		},
-		codEvento: {
+		intent_name: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			unique: true,
+			allowNull: true,
+		},
+		action_name: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		data: {
+			type: DataTypes.JSONB, // Supondo que o campo "data" seja do tipo JSON
+			allowNull: true,
 		},
 	},
 	{
 		sequelize,
 		modelName: "Event",
-		tableName: "Events", // Certifique-se de que o nome da tabela corresponda ao nome usado na migração
+		tableName: "events",
+		timestamps: false, // Se não houver campos createdAt e updatedAt
 	}
 );
 

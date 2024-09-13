@@ -5,6 +5,7 @@ import AuthMiddleware from "../middlewares/auth.js";
 const ConversationsRouter = Router();
 
 ConversationsRouter.post("/conversas/criar", ConversationsController.saveConversation);
-ConversationsRouter.get("/conversa/buscar", AuthMiddleware, ConversationsController.findMessages);
+ConversationsRouter.get("/conversa/buscar", AuthMiddleware, ConversationsController.findConversation);
+ConversationsRouter.get("/conversa/mensagens", AuthMiddleware, ConversationsController.findMessages);
 
 export default ConversationsRouter;

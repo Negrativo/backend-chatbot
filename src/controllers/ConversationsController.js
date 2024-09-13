@@ -46,16 +46,30 @@ class ConversatiosController {
 		}
 	}
 
-	async findMessages(req, res) {
-		const { cpf } = req.params;
+	async findConversation(req, res) {
 		try {
-			const user = await User.findOne({ where: { cpf } });
-			if (!user) {
-				return res.status(404).json({ message: "Usuário não encontrado." });
+			const conversations = await Conversation.findAll();
+			if (!conversations) {
+				return res.status(404).json({ message: "Não foram encontradas conversas." });
 			}
-			res.json({ user });
+			res.json({ conversations });
 		} catch (error) {
-			console.error("Erro ao encontrar usuário por CPF:", error);
+			console.error("Erro ao encontrar conversas:", error);
+			res.status(500).json({ error: "Houve um problema interno, tente novamente mais tarde." });
+		}
+	}
+
+	async findMessages(req, res) {
+		const { conversationId } = req.query;
+		console.log("1211- ", conversationId);
+		try {
+			const messages = await Message.findAll({ where: { conversation_id: conversationId } });
+			if (!messages || messages.length === 0) {
+				return res.status(404).json({ message: "Não foram encontradas mensagens para essa conversa." });
+			}
+			res.json({ messages: messages });
+		} catch (error) {
+			console.error("Erro ao encontrar mensagens:", error);
 			res.status(500).json({ error: "Houve um problema interno, tente novamente mais tarde." });
 		}
 	}

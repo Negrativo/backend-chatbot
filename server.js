@@ -2,10 +2,10 @@ import dotenv from "dotenv";
 import express, { json } from "express";
 import pkg from "pg";
 import UsuarioRoutes from "./src/routes/usuarioRoutes.js";
-import EventsRoutes from "./src/routes/eventsRoutes.js";
-import ChatbotRouter from "./src/routes/chatbotRoutes.js";
+import AgendamentoRoutes from "./src/routes/agendamentoRoutes.js";
 import LoginRouter from "./src/routes/loginRoutes.js";
 import ConversationsRouter from "./src/routes/conversationRoutes.js";
+import EventRouter from "./src/routes/EventRoutes.js";
 import cors from "cors";
 
 const { Client } = pkg;
@@ -35,10 +35,10 @@ app.use(json());
 app.use(cors());
 
 app.use(UsuarioRoutes);
-app.use(EventsRoutes);
-app.use(ChatbotRouter);
+app.use(AgendamentoRoutes);
 app.use(LoginRouter);
 app.use(ConversationsRouter);
+app.use(EventRouter);
 
 connectToDatabase();
 
